@@ -14,19 +14,20 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    // new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [
     // js
     {
       test: /\.js$/,
-      loaders: ['babel'],
+      // loaders: ['babel'],
+      loaders: ['babel-loader'],
       include: path.join(__dirname, 'client')
     },
     // CSS
-    { 
-      test: /\.styl$/, 
+    {
+      test: /\.styl$/,
       include: path.join(__dirname, 'client'),
       loader: 'style-loader!css-loader!stylus-loader'
     }
