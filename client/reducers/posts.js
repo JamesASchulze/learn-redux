@@ -7,9 +7,18 @@
 // it needs to do anything.
 
 function posts(state = [], action) {
-   console.log('The post has been updated');
-   console.log(state, action);
-   return state;
+   switch(action.type) {
+      case 'INCREMENT_LIKES' :
+         //Return the updated state
+      const i = action.index;
+         return [
+            ...state.slice(0, i), // Before the one we are updating
+            {...state[i], likes: state[i].likes + 1}, // The one we are updating
+            ...state.slice(i + 1), // After the one we are updating
+         ]
+      default:
+         return state;
+   }
 }
 
 export default posts;
