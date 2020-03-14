@@ -3,13 +3,21 @@ import React from 'react';
 // import Comments from './Comment';
 
 class Comments extends React.Component {
+
+   deleteComment(i) {
+      // console.log('deleting post');
+      const { postId } = this.props.params;
+      this.props.removeComment(postId, i);
+   }
+
    renderComment(comment, i) {
+
       return (
          <div className="comment" key={i} >
             <p>
                <strong>{comment.user}</strong>
                {comment.text}
-               <button className="remove-comment">&times;</button>
+               <button className="remove-comment" onClick={() => this.props.removeComment(this.props.params.postId, i)}>&times;</button>
             </p>
          </div>
       )
@@ -22,7 +30,7 @@ class Comments extends React.Component {
       const comment = this.refs.comment.value;
 
       this.props.addComment(postId, author, comment);
-
+      this.refs.commentForm.reset();
    }
 
    render() {
